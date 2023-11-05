@@ -1,3 +1,5 @@
+use std::vec;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
@@ -9,7 +11,7 @@ struct Paragraph{
 struct Article{
     article: String,
     author: String,
-    paragraph: Vec<Paragraph>
+    paragraph: Vec<Paragraph> 
 }
 
 fn read_json_typed(raw_json: &str) -> Article {
@@ -37,4 +39,9 @@ fn main() {
 
     let parsed: Article = read_json_typed(json);
     println!("name of the first article: {}", parsed.paragraph[0].name);
+
+    let article: Article = Article { article: String::from("wqqwq dwq"), author: String::from("fwfdwdw"), paragraph: vec![Paragraph { name: String::from("fwefwef") }] };
+
+    let serialized = serde_json::to_string(&article).unwrap();
+    println!("serialized = {}", serialized);
 }
