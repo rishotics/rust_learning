@@ -14,7 +14,7 @@ use std::collections::HashMap;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //tokio::task::spawn_blocking(move || blocking_get().unwrap());
     basic().await?;
-    //json().await?;
+    json().await?;
     //post().await?;
     //status().await?;
     //request().await?;
@@ -28,7 +28,7 @@ fn blocking_get() -> Result<(), Box<dyn std::error::Error>> {
     let res = reqwest::blocking::get("http://0.0.0.0:8000")?;
 
     let body = res.text()?;
-    println!("body = {:?}", body);
+    println!("baic body = {:?}", body);
 
     Ok(())
 }
@@ -46,7 +46,7 @@ struct Data {
 }
 
 async fn json() -> Result<(), Box<dyn std::error::Error>> {
-    let res = reqwest::get("http://0.0.0.0:8000").await?;
+    let res = reqwest::get("https://httpbin.org/get").await?;
 
     let body = res.json::<Data>().await?;
     println!("body = {:?}", body.test);
